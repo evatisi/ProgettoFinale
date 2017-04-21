@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 
+import it.overnet.models.Contact;
 import it.overnet.utilities.DBUtilityConnection;
 
 public class Crud {
@@ -60,7 +61,7 @@ public class Crud {
 		return check;
 	}
 
-	public static boolean insertRecordIntoTable(String nome, String cognome, String tel, String mail) throws Exception {
+	public static boolean insertRecordIntoTable(Contact contatto) throws Exception {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -72,10 +73,10 @@ public class Crud {
 		try {
 			dbConnection = DBUtilityConnection.getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-			preparedStatement.setString(1, nome);
-			preparedStatement.setString(2, cognome);
-			preparedStatement.setString(3, tel);
-			preparedStatement.setString(4, mail);
+			preparedStatement.setString(1, contatto.getNome());
+			preparedStatement.setString(2, contatto.getCognome());
+			preparedStatement.setString(3, contatto.getTel());
+			preparedStatement.setString(4, contatto.getMail());
 
 			// execute insert SQL statement
 			preparedStatement.executeUpdate();
@@ -102,13 +103,14 @@ public class Crud {
 		return check;
 	}
 
-	public static boolean selectRecordIntoTable(String nome, String cognome, int tel, String mail) throws Exception {
+	public static boolean selectRecordIntoTable(Contact contatto) throws Exception {
 
 		Connection dbConnection = null;
 		Statement statement = null;
-		String selectTableSQL = "SELECT nome, cognome FROM CONTACT WHERE nome= '" + nome + "' AND cognome ='" + cognome
-				+ "' AND tel ='" + tel + "' AND mail ='" + mail + "'";
+		String selectTableSQL = "SELECT nome, cognome FROM CONTACT WHERE nome= '" + contatto.getNome() + "' AND cognome ='" 
+		+ contatto.getCognome() + "' AND tel ='" + contatto.getTel() + "' AND mail ='" + contatto.getMail()+ "'";
 		System.out.println(selectTableSQL);
+		
 		ResultSet resulSet = null;
 
 		boolean check = false;
@@ -142,21 +144,19 @@ public class Crud {
 
 	}
 
-	public static boolean deleteRecordIntoTable(String nome, String cognome) throws Exception {
+	public static boolean deleteRecordIntoTable(Contact contatto) throws Exception {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertTableSQL = "DELETE FROM CONTACT " + " WHERE NOME = ?" + " AND COGNOME = ?";
+		String insertTableSQL = "DELETE FROM CONTACT " + " WHERE ID = ?" ;
 		boolean check = false;
 
 		try {
 			dbConnection = DBUtilityConnection.getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
-			preparedStatement.setString(1, nome);
-			preparedStatement.setString(2, cognome);
-
+			preparedStatement.setInt(1, contatto.getId());
 			// execute insert SQL stetement
 			preparedStatement.executeUpdate();
 
@@ -182,7 +182,7 @@ public class Crud {
 		return check;
 	}
 
-	public static boolean updateRecordIntoTable(String nome, String cognome) throws Exception {
+	public static boolean updateRecordIntoTable(Contact contatto) throws Exception {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -194,8 +194,9 @@ public class Crud {
 			dbConnection = DBUtilityConnection.getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
-			preparedStatement.setString(1, nome);
-			preparedStatement.setString(2, cognome);
+			preparedStatement.setString(1, contatto.getNome());
+			preparedStatement.setString(2, contatto.getCognome());
+			preparedStatement.setInt(3, contatto.getId());
 
 			preparedStatement.setInt(2, 1);
 
