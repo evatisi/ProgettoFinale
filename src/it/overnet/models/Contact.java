@@ -4,10 +4,10 @@ public class Contact {
 	private int id;
 	private String nome;
 	private String cognome;
-	private int tel;
+	private String tel;
 	private String mail;
 	
-	public Contact(int id, String nome, String cognome, int tel, String mail) {
+	public Contact(int id, String nome, String cognome, String tel, String mail) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -39,11 +39,11 @@ public class Contact {
 		this.cognome = cognome;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 

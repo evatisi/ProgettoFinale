@@ -8,5 +8,20 @@
 </head>
 <body>
 
+<form action="ProgettoFinale" method="get">
+	
+			Enter username :<input type="text" name="username"> <br>
+			Enter password :<input type="password" name="password"><br>
+			
+			<input type="submit" value="Login"> 
+			
+	
+	</form>
+		
+<a href="add.jsp"> 	<input type="submit" value="Elimina"> </a>
+		
+<a href="edit.jsp"> oppure 	<input type="submit" value="Modifica"> </a>
+	
+
 </body>
 </html>
