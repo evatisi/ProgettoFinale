@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import it.overnet.models.Contact;
@@ -103,29 +104,38 @@ public class Crud {
 		return check;
 	}
 
-	public static boolean selectRecordIntoTable(Contact contatto) throws Exception {
+	public static ArrayList<Contact> selectRecordIntoTable() throws Exception {
 
 		Connection dbConnection = null;
 		Statement statement = null;
-		String selectTableSQL = "SELECT nome, cognome FROM CONTACT WHERE nome= '" + contatto.getNome() + "' AND cognome ='" 
-		+ contatto.getCognome() + "' AND tel ='" + contatto.getTel() + "' AND mail ='" + contatto.getMail()+ "'";
+		String selectTableSQL = "SELECT * FROM CONTACT";
 		System.out.println(selectTableSQL);
 		
 		ResultSet resulSet = null;
-
-		boolean check = false;
+		
+		ArrayList<Contact> list = new ArrayList<>();
 
 		try {
 
 			dbConnection = DBUtilityConnection.getDBConnection();
 			statement = dbConnection.prepareStatement(selectTableSQL);
-
+			
 			resulSet = statement.executeQuery(selectTableSQL);
+			
+			
 
-			if (resulSet.next()) {
-				check = true;
+			while (resulSet.next()) {
+				int id = Integer.parseInt(resulSet.getString("ID"));
+				String nome = resulSet.getString("NOME");
+				String cognome = resulSet.getString("COGNOME");
+				String tel = resulSet.getString("TEL");
+				String mail = resulSet.getString("MAIL");
+				Contact contatto = new Contact(nome, cognome,tel,mail);
+				contatto.setId(id);
+				list.add(contatto);
 			}
-
+			
+			
 		} catch (SQLException e) {
 
 			logger.warning("Errore nella select");
@@ -140,7 +150,8 @@ public class Crud {
 				dbConnection.close();
 			}
 		}
-		return check;
+		
+		return list;
 
 	}
 

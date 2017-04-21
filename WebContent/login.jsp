@@ -46,7 +46,7 @@
 			<h3 class="panel-title">Login</h3>
 		</div>
 		<div class="panel-body">
-			<form method="post" action="login" class="form-horizontal">
+			<form method="post" action="Login" class="form-horizontal">
 
 				Le credenziali di accesso sono:
 				<ul>
