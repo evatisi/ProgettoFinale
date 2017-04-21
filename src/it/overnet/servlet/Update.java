@@ -22,21 +22,19 @@ public class Update extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String tel= request.getParameter("tel");
-		String mail = request.getParameter("mail");
+		/*Contact contatto = request.getParameter("nome");
+		
 		
 		try {
 			Crud.createTable();
-			Crud.insertRecordIntoTable(nome, cognome, tel, mail);
+			Crud.insertRecordIntoTable(contatto);
 
 			response.sendRedirect("edit.jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("login.jsp");
-		}
+		}*/
 	}
 
 }

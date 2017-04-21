@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.overnet.dao.Crud;
+import it.overnet.models.Contact;
 
 
 /**
@@ -23,21 +24,19 @@ public class SaveContact extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String tel= request.getParameter("tel");
-		String mail = request.getParameter("mail");
+	/*	Contact contatto = request.getParameter("");
+	
 		
 		try {
 			Crud.createTable();
-			Crud.insertRecordIntoTable(nome, cognome, tel, mail);
+			Crud.insertRecordIntoTable(contatto);
 
 			response.sendRedirect("add.jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("login.jsp");
-		}
+		}*/
 	}
 
 }
