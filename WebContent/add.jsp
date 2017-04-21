@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="ProgettoFinale" method="post">
 
+		Enter nome:<input type="text" name="nome"> <br>
+		Enter cognome:<input type="text" name="cognome"><br>
+		Enter tel:<input type="text" name="tel"><br>
+		Enter mail:<input type="text" name="mail"><br>
+		
+		<input type="submit" value="termina salvataggio">
+
+	</form>
 </body>
 </html>

@@ -36,7 +36,7 @@ public class SaveContact extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("login.jsp");
 		}
 	}
 

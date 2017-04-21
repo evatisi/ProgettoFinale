@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<form action="ProgettoFinale" method="get">
+	
+		Enter nome:<input type="text" name="nome"> <br>
+		Enter cognome:<input type="text" name="cognome"><br>
+		Enter tel:<input type="text" name="tel"><br>
+		Enter mail:<input type="text" name="mail"><br>
+			
+			<input type="submit" value="Login"> 
+			
+	
+	</form>
+		
+<a href="add.jsp"> oppure 	<input type="submit" value="salva contatto"> </a>
+
+
 <h1>Hello</h1>
 </body>
 </html>
