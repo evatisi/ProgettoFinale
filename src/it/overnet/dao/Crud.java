@@ -189,7 +189,7 @@ public class Crud {
 		PreparedStatement preparedStatement = null;
 		boolean check = false;
 
-		String insertTableSQL = "UPDATE CONTACT SET" + " NOME = ?" + " WHERE ID = ?";
+		String insertTableSQL = "UPDATE CONTACT SET" + " NOME = ?, COGNOME = ?" + " WHERE ID = ?";
 		
 		try {
 			dbConnection = DBUtilityConnection.getDBConnection();
