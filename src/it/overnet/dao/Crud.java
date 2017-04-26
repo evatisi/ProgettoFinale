@@ -46,7 +46,7 @@ public class Crud {
 
 		} catch (SQLException e) {
 
-			System.err.println(e.getMessage());
+			logger.warning(e.getMessage());
 
 		} finally {
 
@@ -110,19 +110,17 @@ public class Crud {
 		Statement statement = null;
 		String selectTableSQL = "SELECT * FROM CONTACT";
 		System.out.println(selectTableSQL);
-		
+
 		ResultSet resulSet = null;
-		
+
 		ArrayList<Contact> list = new ArrayList<>();
 
 		try {
 
 			dbConnection = DBUtilityConnection.getDBConnection();
 			statement = dbConnection.prepareStatement(selectTableSQL);
-			
+
 			resulSet = statement.executeQuery(selectTableSQL);
-			
-			
 
 			while (resulSet.next()) {
 				int id = Integer.parseInt(resulSet.getString("ID"));
@@ -130,15 +128,16 @@ public class Crud {
 				String cognome = resulSet.getString("COGNOME");
 				String tel = resulSet.getString("TEL");
 				String mail = resulSet.getString("MAIL");
-				Contact contatto = new Contact(nome, cognome,tel,mail);
+				Contact contatto = new Contact(nome, cognome, tel, mail);
 				contatto.setId(id);
 				list.add(contatto);
+				System.out.println("Contatto: " + contatto);
 			}
-			
-			
+
 		} catch (SQLException e) {
 
 			logger.warning("Errore nella select");
+			e.printStackTrace();
 
 		} finally {
 
@@ -150,7 +149,7 @@ public class Crud {
 				dbConnection.close();
 			}
 		}
-		
+
 		return list;
 
 	}
@@ -160,7 +159,7 @@ public class Crud {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertTableSQL = "DELETE FROM CONTACT " + " WHERE ID = ?" ;
+		String insertTableSQL = "DELETE FROM CONTACT " + " WHERE ID = ?";
 		boolean check = false;
 
 		try {
@@ -235,13 +234,13 @@ public class Crud {
 		}
 		return check;
 	}
-	
-	public static Contact selectRecordById(int id) throws Exception{
+
+	public static Contact selectRecordById(int id) throws Exception {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 		String selectTableSQL = "SELECT * FROM CONTACT WHERE ID= ?";
 		System.out.println(selectTableSQL);
-		
+
 		ResultSet resulSet = null;
 		Contact contatto = null;
 
@@ -249,22 +248,20 @@ public class Crud {
 
 			dbConnection = DBUtilityConnection.getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(selectTableSQL);
-			preparedStatement.setInt(1,id);
+			preparedStatement.setInt(1, id);
 			resulSet = preparedStatement.executeQuery();
-			
 
 			while (resulSet.next()) {
-				
+
 				String nome = resulSet.getString("NOME");
 				String cognome = resulSet.getString("COGNOME");
 				String tel = resulSet.getString("TEL");
 				String mail = resulSet.getString("MAIL");
-				contatto = new Contact(nome, cognome,tel,mail);
+				contatto = new Contact(nome, cognome, tel, mail);
 				contatto.setId(id);
-				
+
 			}
-			
-			
+
 		} catch (SQLException e) {
 
 			logger.warning("Errore nella select");
@@ -279,8 +276,8 @@ public class Crud {
 				dbConnection.close();
 			}
 		}
-		
+
 		return contatto;
-		
+
 	}
 }

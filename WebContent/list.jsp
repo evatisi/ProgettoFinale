@@ -14,28 +14,21 @@
 
 <table>
 	<tr>
-    <th>ID</th>
     <th>Nome</th> 
     <th>Cognome</th>
     <th>Tel</th>
     <th>Mail</th>
+    <th>Operazioni</th>
   </tr>
   <!--  ciclo i contatti della lista $list -->
   <c:forEach  items="${list}" var="contact" >
-  <tr>
-    <th>Nome</th>
-    <th>Cognome</th> 
-    <th>Tel</th>
-    <th>Mail</th>
-    <th>Operazioni</th>
-  </tr>
   <tr>
     <td>${contact.nome}</td>
     <td>${contact.cognome}</td>
     <td>${contact.tel}</td>
     <td>${contact.mail}</td>
-    <td><a href="Delete?id="${contact.id}"> <input type="submit" value="Elimina"> </a> 
-    <a href="Update?id="${contact.id}> <input type="submit" value="Modifica"> </a></td>
+    <td><a href="Delete?id=${contact.id}"> <input type="submit" value="Elimina"> </a> 
+    <a href="Update?id=${contact.id}"> <input type="submit" value="Modifica"> </a></td>
   </tr>
   
   </c:forEach>

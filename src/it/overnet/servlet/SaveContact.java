@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.overnet.dao.Crud;
+import it.overnet.models.Contact;
+
 
 /**
  * Servlet implementation class SaveContact
@@ -19,27 +22,29 @@ public class SaveContact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-
-	/*	Contact contatto = request.getParameter("");
-	
-		
+		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
+		String tel = request.getParameter("tel");
+		String mail = request.getParameter("mail");
+		Contact c = new Contact(nome,cognome,tel,mail);
 		try {
-			Crud.createTable();
-			Crud.insertRecordIntoTable(contatto);
-
-			response.sendRedirect("add.jsp");
-
+			if(Crud.insertRecordIntoTable(c)){
+				response.sendRedirect("List");
+			}else {
+				//errore
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("login.jsp");
-		}*/
+		}
+		
+	
 	}
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("add.jsp").forward(request, response);
+		
 	}
 
 }
