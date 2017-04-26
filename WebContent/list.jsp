@@ -10,12 +10,7 @@
 </head>
 <body>
 
-<form action="List" method="get">
-	
-		
-			
-	
-</form>
+<a href="SaveContact"> 	<input type="submit" value="New Contact"> </a>
 
 <table>
 	<tr>
@@ -28,11 +23,18 @@
   <!--  ciclo i contatti della lista $list -->
   <c:forEach  items="${list}" var="contact" >
   <tr>
+    <th>Nome</th>
+    <th>Cognome</th> 
+    <th>Tel</th>
+    <th>Mail</th>
+    <th>Operazioni>
+  </tr>
+  <tr>
     <td>${contact.nome}</td>
     <td>${contact.cognome}</td>
     <td>${contact.tel}</td>
     <td>${contact.mail}</td>
-    
+    <td><a href="Delete"> 	<input type="submit" value="Elimina"> </a> <a href="Update"> <input type="submit" value="Modifica"> </a>
   </tr>
   
   </c:forEach>
@@ -40,9 +42,9 @@
   
 </table>
 		
-<a href="add.jsp"> 	<input type="submit" value="Elimina"> </a>
+<!-- <a href="delete.jsp"> 	<input type="submit" value="Elimina"> </a> -->
 		
-<a href="edit.jsp"> oppure 	<input type="submit" value="Modifica"> </a>
+<!-- <a href="edit.jsp"> oppure 	<input type="submit" value="Modifica"> </a> -->
 	
 
 </body>
