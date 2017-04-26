@@ -27,7 +27,7 @@
     <th>Cognome</th> 
     <th>Tel</th>
     <th>Mail</th>
-    <th>Operazioni>
+    <th>Operazioni</th>
   </tr>
   <tr>
     <td>${contact.nome}</td>

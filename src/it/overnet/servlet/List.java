@@ -23,6 +23,7 @@ public class List extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
+			Crud.createTable();
 			ArrayList<Contact> list = Crud.selectRecordIntoTable();
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("list.jsp").forward(request, response);
