@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.overnet.dao.Crud;
-import it.overnet.models.Contact;
-
 
 /**
  * Servlet implementation class SaveContact
