@@ -34,7 +34,8 @@
     <td>${contact.cognome}</td>
     <td>${contact.tel}</td>
     <td>${contact.mail}</td>
-    <td><a href="Delete"> 	<input type="submit" value="Elimina"> </a> <a href="Update"> <input type="submit" value="Modifica"> </a>
+    <td><a href="Delete?id="${contact.id}"> <input type="submit" value="Elimina"> </a> 
+    <a href="Update?id="${contact.id}> <input type="submit" value="Modifica"> </a></td>
   </tr>
   
   </c:forEach>
