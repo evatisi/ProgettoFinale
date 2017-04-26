@@ -235,4 +235,52 @@ public class Crud {
 		}
 		return check;
 	}
+	
+	public static Contact selectRecordById(int id) throws Exception{
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		String selectTableSQL = "SELECT * FROM CONTACT WHERE ID= ?";
+		System.out.println(selectTableSQL);
+		
+		ResultSet resulSet = null;
+		Contact contatto = null;
+
+		try {
+
+			dbConnection = DBUtilityConnection.getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(selectTableSQL);
+			preparedStatement.setInt(1,id);
+			resulSet = preparedStatement.executeQuery();
+			
+
+			while (resulSet.next()) {
+				
+				String nome = resulSet.getString("NOME");
+				String cognome = resulSet.getString("COGNOME");
+				String tel = resulSet.getString("TEL");
+				String mail = resulSet.getString("MAIL");
+				contatto = new Contact(nome, cognome,tel,mail);
+				contatto.setId(id);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+
+			logger.warning("Errore nella select");
+
+		} finally {
+
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		
+		return contatto;
+		
+	}
 }
