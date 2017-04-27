@@ -7,13 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="List" method="post">
-		<! Contact contact = request.getParameter("contact"); !>
-		nome:<input type="text" value="<%= %>"> <br>
-		cognome:<input type="text" value="<% request.getParameter("cognome");%>"><br>
-		tel:<input type="text" value="<% request.getParameter("tel");%>"><br>
-		mail:<input type="text" value="<% request.getParameter("mail");%>"><br>
-		
+<form action="Update" method="post">
+		nome:<input type="text" name="contactNome" value="${contact.nome}"> <br>
+		cognome:<input type="text" name="contactCognome" value="${contact.cognome}"><br>
+		tel:<input type="text" name="contactTel" value="${contact.tel}"><br>
+		mail:<input type="text" name="contactMail" value="${contact.mail}"><br>
+		<input type="hidden" name="contactId" value="${contact.id}"><br>
 		<input type="submit" value="termina modifica">
 	</form>
 </body>
