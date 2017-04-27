@@ -198,17 +198,19 @@ public class Crud {
 		PreparedStatement preparedStatement = null;
 		boolean check = false;
 
-		String insertTableSQL = "UPDATE CONTACT SET" + " NOME = ?, COGNOME = ?" + " WHERE ID = ?";
-
+		String insertTableSQL = "UPDATE CONTACT SET NOME = ?, COGNOME = ?, TEL= ?, MAIL= ? WHERE ID = ?";
+		System.out.println(insertTableSQL);
 		try {
 			dbConnection = DBUtilityConnection.getDBConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
 			preparedStatement.setString(1, contatto.getNome());
 			preparedStatement.setString(2, contatto.getCognome());
-			preparedStatement.setInt(3, contatto.getId());
+			preparedStatement.setString(3, contatto.getTel());
+			preparedStatement.setString(4, contatto.getMail());
+			preparedStatement.setInt(5, contatto.getId());
 
-			preparedStatement.setInt(2, 1);
+			//preparedStatement.setInt(2, 1);
 
 			// execute insert SQL stetement
 			preparedStatement.executeUpdate();

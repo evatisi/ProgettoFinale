@@ -50,8 +50,9 @@ public class Update extends HttpServlet {
 		String id = request.getParameter("contactId");
 		contatto = new Contact (nome,cognome,tel,mail);
 		contatto.setId(Integer.parseInt(id));
+		System.out.println("Contatto: "+ contatto);
 		try {
-			if(Crud.insertRecordIntoTable(contatto)){
+			if(Crud.updateRecordIntoTable(contatto)){
 				response.sendRedirect("List");
 			}else {
 				//errore
