@@ -11,7 +11,7 @@
 <body>
 
 <a href="SaveContact"> 	<input type="submit" value="New Contact"> </a>
-
+<a href="Logout"> 	<input type="submit" value="Logout"> </a>
 <table>
 	<tr>
     <th>Nome</th> 
