@@ -282,4 +282,32 @@ public class Crud {
 		return contatto;
 
 	}
+	
+	public static boolean isTableExist(String tableName){
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		String selectTableSQL = "select table_name from user_tables where table_name=?";
+
+		ResultSet resultSet = null;
+		
+		try {
+			dbConnection = DBUtilityConnection.getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(selectTableSQL);
+			preparedStatement.setString(1, tableName);
+			resultSet = preparedStatement.executeQuery();
+			if(!resultSet.next()){
+				return false;
+			} else {
+				return true;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+
+		
+	}
 }
