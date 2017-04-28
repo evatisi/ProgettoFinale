@@ -32,7 +32,8 @@ public class List extends HttpServlet {
 				logger.info("Table exists!");
 			}*/
 			HttpSession session = request.getSession();
-			ArrayList<Contact> list = ContactDao.selectRecordIntoTable();
+			int userId = Integer.parseInt(session.getAttribute("userId").toString());
+			ArrayList<Contact> list = ContactDao.selectRecordIntoTable(userId);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("list.jsp").forward(request, response);
 		} catch (Exception e) {

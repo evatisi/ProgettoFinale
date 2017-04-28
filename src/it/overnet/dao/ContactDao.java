@@ -159,6 +159,56 @@ public class ContactDao {
 		return list;
 
 	}
+	
+	public static ArrayList<Contact> selectRecordIntoTable(int userId) throws Exception {
+
+		Connection dbConnection = null;
+		PreparedStatement statement = null;
+		String selectTableSQL = "SELECT * FROM CONTACT WHERE ID_USER= ?";
+		System.out.println(selectTableSQL);
+
+		ResultSet resulSet = null;
+
+		ArrayList<Contact> list = new ArrayList<>();
+
+		try {
+
+			dbConnection = DBUtilityConnection.getDBConnection();
+			statement = dbConnection.prepareStatement(selectTableSQL);
+			statement.setInt(1, userId);
+			resulSet = statement.executeQuery();
+
+			while (resulSet.next()) {
+				int id = Integer.parseInt(resulSet.getString("ID"));
+				String nome = resulSet.getString("NOME");
+				String cognome = resulSet.getString("COGNOME");
+				String tel = resulSet.getString("TEL");
+				String mail = resulSet.getString("MAIL");
+				Contact contatto = new Contact(nome, cognome, tel, mail);
+				contatto.setId(id);
+				list.add(contatto);
+				System.out.println("Contatto: " + contatto);
+			}
+
+		} catch (SQLException e) {
+
+			logger.warning("Errore nella select");
+			e.printStackTrace();
+
+		} finally {
+
+			if (statement != null) {
+				statement.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+
+		return list;
+
+	}
 
 	public static boolean deleteRecordIntoTable(Contact contatto) throws Exception {
 
