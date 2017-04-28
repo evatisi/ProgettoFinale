@@ -48,10 +48,10 @@
 		<div class="panel-body">
 			<form method="post" action="Login" class="form-horizontal">
 
-				Le credenziali di accesso sono:
+				Inserire credenziali:
 				<ul>
-					<li>admin</li>
-					<li>admin</li>
+					<li>username</li>
+					<li>password</li>
 				</ul>
 
 				<div
@@ -90,6 +90,7 @@
 					</div>
 				</div>
 				<button type="submit" class="btn btn-info btn-block">Login</button>
+				<a href="registrazioneUser.jsp"> <button type="submit" class="btn btn-info btn-block">Registration</button> </a>
 			</form>
 
 		</div>
