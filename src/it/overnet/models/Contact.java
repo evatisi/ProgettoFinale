@@ -6,7 +6,16 @@ public class Contact {
 	private String cognome;
 	private String tel;
 	private String mail;
+	private String userId;
 	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public Contact(String nome, String cognome, String tel, String mail) {
 		this.nome = nome;
 		this.cognome = cognome;

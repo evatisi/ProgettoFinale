@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
 		
 		HttpSession session = req.getSession();
 		// se l'utente non è loggato e non è nella pagina di Login
-		if (!Boolean.TRUE.equals(session.getAttribute("logged")) && !req.getRequestURL().toString().contains("Login")) {
+		if (!Boolean.TRUE.equals(session.getAttribute("logged")) && !req.getRequestURL().toString().contains("Login") && !req.getRequestURL().toString().contains("RegistrazioneUser")) {
 			res.sendRedirect("Login");
 		}else {
 			// pass the request along the filter chain

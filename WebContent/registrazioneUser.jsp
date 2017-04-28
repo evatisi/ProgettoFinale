@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,13 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="RegistrazioneUser" method="post">
+	<form action="RegistrazioneUser" method="post">
 
 		Enter username:<input type="text" name="username"> <br>
 		Enter password:<input type="password" name="password"><br>
-	
-		<input type="submit" value="terminaregistrazione">
+
+		<input type="submit" value="Salva">
 
 	</form>
+<a href="Login" ><button type="button">Return to Login</button></a>
 </body>
 </html>

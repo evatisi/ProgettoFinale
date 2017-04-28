@@ -9,8 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import it.overnet.dao.Crud;
+import it.overnet.dao.ContactDao;
 import it.overnet.models.Contact;
 
 /**
@@ -24,13 +25,14 @@ public class List extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			if(Crud.isTableExist("CONTACT")==false){
+			/*if(Crud.isTableExist("CONTACT")==false){
 				Crud.createTable();
 				logger.info("Table created!");
 			}else {
 				logger.info("Table exists!");
-			}
-			ArrayList<Contact> list = Crud.selectRecordIntoTable();
+			}*/
+			HttpSession session = request.getSession();
+			ArrayList<Contact> list = ContactDao.selectRecordIntoTable();
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("list.jsp").forward(request, response);
 		} catch (Exception e) {

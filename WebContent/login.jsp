@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<button type="submit" class="btn btn-info btn-block">Login</button>
-				<a href="registrazioneUser.jsp"> <button type="submit" class="btn btn-info btn-block">Registration</button> </a>
+				<a href="RegistrazioneUser"> <button type="button" class="btn btn-info btn-block">Registration</button> </a>
 			</form>
 
 		</div>

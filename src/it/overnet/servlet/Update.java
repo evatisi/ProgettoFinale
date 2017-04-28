@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.overnet.dao.Crud;
+import it.overnet.dao.ContactDao;
 import it.overnet.models.Contact;
 
 /**
@@ -27,7 +27,7 @@ public class Update extends HttpServlet {
 		String id = request.getParameter("id");
 
 		try {
-			Contact c = Crud.selectRecordById(Integer.parseInt(id));
+			Contact c = ContactDao.selectRecordById(Integer.parseInt(id));
 			request.setAttribute("contact", c);
 			request.getRequestDispatcher("edit.jsp").forward(request, response);
 
@@ -52,7 +52,7 @@ public class Update extends HttpServlet {
 		contatto.setId(Integer.parseInt(id));
 		System.out.println("Contatto: "+ contatto);
 		try {
-			if(Crud.updateRecordIntoTable(contatto)){
+			if(ContactDao.updateRecordIntoTable(contatto)){
 				response.sendRedirect("List");
 			}else {
 				//errore

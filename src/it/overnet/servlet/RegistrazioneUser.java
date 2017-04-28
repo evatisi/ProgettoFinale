@@ -6,9 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-import it.overnet.dao.CrudUser;
+import it.overnet.dao.UserDao;
+import it.overnet.models.User;
 
 /**
  * Servlet implementation class RegistrazioneUser
@@ -21,8 +22,7 @@ public class RegistrazioneUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("registrazioneUser.jsp").forward(request, response);	
 	}
 
 	/**
@@ -34,12 +34,16 @@ public class RegistrazioneUser extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
+		
 		try {
-			CrudUser.createTable();
-			CrudUser.insertRecordIntoTable(username, password);
-
-			response.sendRedirect("login.jsp");
+			if(!UserDao.isUserExist(new User(username,password))){
+				UserDao.insertRecordIntoTable(new User(username,password));
+				response.sendRedirect("Login");
+			}else {
+				response.sendRedirect("RegistrazioneUser");
+			}
+		
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

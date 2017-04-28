@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.overnet.dao.Crud;
+import it.overnet.dao.ContactDao;
 import it.overnet.models.Contact;
 
 /**
@@ -25,8 +25,8 @@ public class Delete extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		try {
-			Contact c = Crud.selectRecordById(Integer.parseInt(id));
-			Crud.deleteRecordIntoTable(c);
+			Contact c = ContactDao.selectRecordById(Integer.parseInt(id));
+			ContactDao.deleteRecordIntoTable(c);
 			response.sendRedirect("List");
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
