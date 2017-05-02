@@ -83,14 +83,14 @@ public class ContactDao {
 			checkRow = dbConnection.prepareStatement(selectRow);
 			
 			do{	
-				System.out.println("count: "+count);
+				
 				checkRow.setInt(1, count);
 				resultSet = checkRow.executeQuery();
 				if(resultSet.next()){
 					count++;
-					System.out.println("esiste");
+					
 				} else {
-					System.out.println("non esiste");
+					
 					cicle = false;
 				}
 			}while(cicle);
@@ -103,10 +103,10 @@ public class ContactDao {
 			preparedStatement.setString(4, contatto.getTel());
 			preparedStatement.setString(5, contatto.getMail());
 			preparedStatement.setInt(6, userId);
-			System.out.println(count + contatto.getNome()+contatto.getCognome()+contatto.getTel()+contatto.getMail()+userId);
+			
 			// execute insert SQL statement
 			int i = preparedStatement.executeUpdate();
-			System.out.println("i "+ i);
+			
 			check = true;
 
 			logger.info("Record inserito nella tabella CONTACT!");
