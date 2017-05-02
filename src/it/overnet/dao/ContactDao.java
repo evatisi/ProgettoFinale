@@ -71,23 +71,42 @@ public class ContactDao {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
-
-		String insertTableSQL = "INSERT INTO CONTACT" + "(ID, nome, cognome, tel, mail, id_user) VALUES" + "(default,?,?,?,?,?)";
-
+		PreparedStatement checkRow = null;
+		ResultSet resultSet = null;
+		String insertTableSQL = "INSERT INTO CONTACT" + "(ID, nome, cognome, tel, mail, id_user) VALUES" + "(?,?,?,?,?,?)";
+		String selectRow = "SELECT ID FROM CONTACT WHERE ID= ?";
 		boolean check = false;
-
+		boolean cicle = true;
 		try {
 			dbConnection = DBUtilityConnection.getDBConnection();
-			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-			preparedStatement.setString(1, contatto.getNome());
-			preparedStatement.setString(2, contatto.getCognome());
-			preparedStatement.setString(3, contatto.getTel());
-			preparedStatement.setString(4, contatto.getMail());
-			preparedStatement.setInt(5, userId);
+			int count = 1;
+			checkRow = dbConnection.prepareStatement(selectRow);
 			
+			do{	
+				System.out.println("count: "+count);
+				checkRow.setInt(1, count);
+				resultSet = checkRow.executeQuery();
+				if(resultSet.next()){
+					count++;
+					System.out.println("esiste");
+				} else {
+					System.out.println("non esiste");
+					cicle = false;
+				}
+			}while(cicle);
+			
+			
+			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+			preparedStatement.setInt(1, count);
+			preparedStatement.setString(2, contatto.getNome());
+			preparedStatement.setString(3, contatto.getCognome());
+			preparedStatement.setString(4, contatto.getTel());
+			preparedStatement.setString(5, contatto.getMail());
+			preparedStatement.setInt(6, userId);
+			System.out.println(count + contatto.getNome()+contatto.getCognome()+contatto.getTel()+contatto.getMail()+userId);
 			// execute insert SQL statement
-			preparedStatement.executeUpdate();
-
+			int i = preparedStatement.executeUpdate();
+			System.out.println("i "+ i);
 			check = true;
 
 			logger.info("Record inserito nella tabella CONTACT!");
